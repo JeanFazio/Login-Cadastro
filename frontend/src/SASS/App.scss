@@ -21,12 +21,12 @@ html {
 
 .login-card {
     background-color: white;
-    padding: 80px 60px;
+    padding: 80px 50px;
     border-radius: 30px;
     border-color: #4338ca;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    width: 100%;
-    max-width: 400px;
+    width: 400px;
+    max-width: 500px;
     animation: fadeIn 0.4s ease-in-out;
 }
 
@@ -56,6 +56,10 @@ html {
         color: #888;
         border-bottom: 2px solid transparent;
         transition: all 0.3s ease;
+
+        &:focus {
+            outline: none;
+        }
 
         &.active {
             color: #4f46e5;
@@ -87,12 +91,21 @@ html {
     display: flex;
     flex-direction: column;
 
+    label{
+        font-size: 15px;
+        margin-bottom: 6px;
+        color: #333;
+        
+    }
     input {
-        padding: 12px 15px;
+        width: 100%;
+        padding: 10px;
         margin-bottom: 15px;
-        font-size: 16px;
-        border-radius: 5px;
-        border: 1px solid #ddd;
+        font-size: 14px;
+        color: black;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        border: 1px solid #a5a5a5;
         transition: 0.3s;
 
         &:focus {
