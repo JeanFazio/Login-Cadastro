@@ -1,18 +1,14 @@
-const mysql = require("mysql2");
+const pg = require('pg');
 
-const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "F9s8Wi9.W$zXX!L",
-  database: "login_react"
-});
-
-db.connect((err) => {
-  if (err) {
-    console.error("Erro ao conectar com o banco:", err);
-  } else {
-    console.log("Conectado ao MySQL!");
+const conexao = new pg.Client({
+  connectionString: "postgresql://jean:jAXTJ4CowRPCpB5HmpxZdA@blackzssj-1696.jxf.gcp-southamerica-east1.cockroachlabs.cloud:26257/postgres?sslmode=verify-full",
+  ssl: {
+    rejectUnauthorized: false
   }
 });
 
-module.exports = db;
+conexao.connect()
+  .then(() => console.log("Banco de dados conectado com sucesso!"))
+  .catch((erro) => console.error("Erro ao conectar ao banco de dados:", erro));
+
+module.exports = conexao;

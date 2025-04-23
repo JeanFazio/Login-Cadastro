@@ -3,47 +3,56 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../AuthContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import "../SASS/Perfil.scss";
 
 function Perfil() {
-  const { usuario, logout } = useContext(AuthContext);
-  const [perfil, setPerfil] = useState(null);
+  const [usuario, setUsuario] = useState(null);
   const navigate = useNavigate();
+  const { setUsuario: setUsuarioContexto } = useContext(AuthContext);
 
   useEffect(() => {
-    const fetchPerfil = async () => {
-      try {
-        const response = await axios.get("http://localhost:3001/perfil", {
-          headers: {
-            Authorization: `Bearer ${usuario?.token}`,
-          },
-        });
-        setPerfil(response.data.usuario);
-      } catch (error) {
-        alert("Erro ao buscar perfil");
-        console.error(error);
-      }
-    };
+    const token = localStorage.getItem('token');
+    if (!token) {
+      alert('Você precisa estar logado!');
+      navigate('/');
+      return;
+    }
 
-    fetchPerfil();
-  }, [usuario]);
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+    axios.get('http://localhost:3001/perfil')
+      .then(res => {
+        setUsuario(res.data.usuario);
+        setUsuarioContexto(res.data.usuario);
+      })
+      .catch(err => {
+        console.error('Erro ao buscar perfil:', err);
+        alert('Sessão expirada ou inválida.');
+        localStorage.removeItem('token');
+        navigate('/');
+      });
+  }, []);
 
   const handleLogout = () => {
-    logout();
-    navigate("/");
+    localStorage.removeItem('token');
+    setUsuario(null);
+    setUsuarioContexto(null);
+    navigate('/');
   };
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>Perfil do Usuário</h1>
-      {perfil ? (
-        <>
-          <p><strong>Nome:</strong> {perfil.nome}</p>
-          <p><strong>Email:</strong> {perfil.email}</p>
-        </>
-      ) : (
-        <p>Carregando dados do perfil...</p>
-      )}
-      <button onClick={handleLogout}>Sair</button>
+    <div className="perfil-page">
+      <div className="perfil-card">
+        {usuario ? (
+          <>
+            <h2>Olá, {usuario.nome}!</h2>
+            <p><strong>Email:</strong> {usuario.email}</p>
+            <button onClick={handleLogout}>Sair</button>
+          </>
+        ) : (
+          <p>Carregando informações do perfil...</p>
+        )}
+      </div>
     </div>
   );
 }
