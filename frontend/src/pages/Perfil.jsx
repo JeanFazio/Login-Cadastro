@@ -41,20 +41,43 @@ function Perfil() {
   };
 
   return (
-    <div className="perfil-page">
-      <div className="perfil-card">
-        {usuario ? (
-          <>
-            <h2>Olá, {usuario.nome}!</h2>
-            <p><strong>Email:</strong> {usuario.email}</p>
-            <button onClick={handleLogout}>Sair</button>
-          </>
-        ) : (
-          <p>Carregando informações do perfil...</p>
-        )}
-      </div>
+    <div className="perfil-web">
+      {usuario ? (
+        <div className="perfil-layout">
+          <aside className="perfil-sidebar">
+            <img
+              src="./avatar-padrao.png"
+              alt="Avatar do usuário"
+              className="avatar-web"
+            />
+            <h2>{usuario.nome}</h2>
+            <p>{usuario.email}</p>
+            <button className="btn-sair" onClick={handleLogout}>Sair</button>
+          </aside>
+
+          <section className="perfil-conteudo">
+            <h1>Minha Conta</h1>
+            <div className="perfil-box">
+              <h3>Informações Pessoais</h3>
+              <p><strong>Nome:</strong> {usuario.nome}</p>
+              <p><strong>Email:</strong> {usuario.email}</p>
+              {/* Aqui você pode colocar mais campos: endereço, telefone, etc. */}
+            </div>
+
+            <div className="perfil-box">
+              <h3>Ações Rápidas</h3>
+              <button className="btn-acao">Editar Perfil</button>
+              <button className="btn-acao">Ver Histórico de Pedidos</button>
+            </div>
+          </section>
+        </div>
+      ) : (
+        <p>Carregando perfil...</p>
+      )}
     </div>
   );
+
 }
 
 export default Perfil;
+

@@ -119,7 +119,7 @@ function AuthPage() {
   return (
     <div className="login-page">
       <div className="login-card">
-        <img className='logo-img' src="../public/StutuTurbo Logo-Photoroom.png" alt="" />
+        <img className='logo-img' src="./StutuTurbo Logo-Photoroom.png" alt="" />
         <div className="tabs">
           <button className={tab === 'login' ? 'active' : ''} onClick={() => { setTab('login'); limparCampos(); }}>Login</button>
           <button className={tab === 'cadastro' ? 'active' : ''} onClick={() => { setTab('cadastro'); limparCampos(); }}>Cadastro</button>
