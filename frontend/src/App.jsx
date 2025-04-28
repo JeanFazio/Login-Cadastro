@@ -3,6 +3,7 @@ import { AuthProvider, AuthContext } from "./AuthContext";
 import { useContext } from "react";
 import AuthPage from "./pages/AuthPage";
 import Perfil from "./pages/Perfil";
+import Home from "./pages/Home";
 
 function PrivateRoute({ children }) {
   const { usuario } = useContext(AuthContext);
@@ -23,9 +24,17 @@ function App() {
               </PrivateRoute>
             }
           />
+          <Route
+            path="/home"
+            element={
+              <PrivateRoute>
+                <Home />
+              </PrivateRoute>
+            }
+          />
         </Routes>
       </BrowserRouter>
-    </AuthProvider>
+    </AuthProvider >
   );
 }
 

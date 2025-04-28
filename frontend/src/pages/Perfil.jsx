@@ -1,6 +1,8 @@
 // src/pages/Perfil.jsx
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../AuthContext";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../SASS/Perfil.scss";
@@ -42,6 +44,7 @@ function Perfil() {
 
   return (
     <div className="perfil-web">
+      <Header />
       {usuario ? (
         <div className="perfil-layout">
           <aside className="perfil-sidebar">

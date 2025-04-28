@@ -1,0 +1,36 @@
+.site-header {
+    background-color: #111;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+  
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+  
+      img {
+        height: 40px;
+      }
+  
+      h1 {
+        font-size: 1.5rem;
+      }
+    }
+  
+    nav {
+      a {
+        color: white;
+        margin-left: 2rem;
+        text-decoration: none;
+        font-weight: bold;
+  
+        &:hover {
+          color: #4f46e5;
+        }
+      }
+    }
+  }
+  

@@ -1,0 +1,69 @@
+.home-page {
+    width: 100%;
+    background-color: #f4f4f4;
+    color: #333;
+  
+    .destaque {
+      background: linear-gradient(90deg, #111, #222);
+      color: white;
+      padding: 3rem 2rem;
+      text-align: center;
+  
+      h1 {
+        font-size: 2.5rem;
+      }
+  
+      p {
+        font-size: 1.2rem;
+        margin-top: 1rem;
+      }
+    }
+  
+    .sessao-produtos {
+      padding: 2rem 3rem;
+  
+      h2 {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+      }
+  
+      .produto-linha {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+  
+        .produto-item {
+          display: flex;
+          background: white;
+          padding: 1.5rem;
+          border-radius: 10px;
+          box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+          align-items: center;
+          gap: 2rem;
+  
+          img {
+            width: 200px;
+            border-radius: 10px;
+          }
+  
+          div {
+            h3 {
+              font-size: 1.3rem;
+              margin-bottom: 0.5rem;
+            }
+  
+            p {
+              margin-bottom: 0.5rem;
+            }
+  
+            span {
+              font-weight: bold;
+              font-size: 1.2rem;
+              color: #4f46e5;
+            }
+          }
+        }
+      }
+    }
+  }
+  

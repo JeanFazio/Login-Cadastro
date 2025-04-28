@@ -4,11 +4,7 @@
     padding: 0;
 }
 
-body,
-html {
-    display: flex;
-    justify-content: center;
-    place-items: center;
+body{
     height: auto;
     width: 100%;
     background-color: #242424;
@@ -19,11 +15,12 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100vh;
 }
 
 .login-card {
     background-color: white;
-    padding: 40px 50px 60px 50px;
+    padding: 40px 50px 50px 50px;
     border-radius: 30px;
     border-color: #4338ca;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);

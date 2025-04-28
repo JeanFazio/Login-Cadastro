@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
     if (token) {
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
-      axios.get("http://localhost:3001/perfil")
+      axios.get("http://localhost:3001/home")
         .then(res => {
           setUsuario(res.data.usuario);
         })

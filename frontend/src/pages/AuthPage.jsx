@@ -1,7 +1,7 @@
 // src/pages/AuthPage.jsx
 import { useState, useContext } from 'react';
 import axios from 'axios';
-import '../SASS/App.scss';
+import '../SASS/AuthPage.scss';
 import { AuthContext } from '../AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
@@ -54,7 +54,7 @@ function AuthPage() {
 
       await login(token);
       
-      navigate("/perfil");
+      navigate("/home");
     } catch (error) {
       alert(error.response ? error.response.data : "Erro ao conectar ao servidor.");
       console.error(error);
