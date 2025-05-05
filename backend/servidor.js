@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const db = require("./db"); // agora usando o Pool do pg
+const db = require("./db");
 const jwt = require("jsonwebtoken");
 
 const SECRET_KEY = "1072511537"; // Chave secreta para assinar o token JWT
