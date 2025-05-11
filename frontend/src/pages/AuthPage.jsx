@@ -29,15 +29,18 @@ function AuthPage() {
   });
 
   const verificarEmail = async (email) => {
-    if (!email) {
-      setErrors((prev) => ({ ...prev, email: '' }));
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  
+    // Verifica formato antes de consultar o backend
+    if (!emailRegex.test(email)) {
+      setErrors((prev) => ({ ...prev, email: 'Insira um e-mail válido (ex: exemplo@email.com)' }));
       setSuccess((prev) => ({ ...prev, email: '' }));
       return;
     }
-
+  
     try {
       const { data } = await axios.get("http://localhost:3001/verificar-email", { params: { email } });
-
+  
       setErrors((prev) => ({ ...prev, email: data.disponivel ? '' : data.mensagem }));
       setSuccess((prev) => ({ ...prev, email: data.disponivel ? data.mensagem : '' }));
     } catch (error) {
@@ -70,11 +73,7 @@ function AuthPage() {
     };
 
     // Validação de e-mail
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      novosErros.email = 'Insira um e-mail válido (ex: exemplo@email.com)';
-    }
-
+   
     // Validação de senha
     if (senha.length < 6) {
       novosErros.senha = 'A senha deve ter pelo menos 6 caracteres.';
