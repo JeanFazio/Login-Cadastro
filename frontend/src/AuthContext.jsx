@@ -6,13 +6,13 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [usuario, setUsuario] = useState(null);
 
-  useEffect(() => {
+  useEffect(() => { 
     const token = localStorage.getItem("token");
 
     if (token) {
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
-      axios.get("http://localhost:3001/home")
+      axios.get("http://localhost:3001/perfil")
         .then(res => {
           setUsuario(res.data.usuario);
         })
