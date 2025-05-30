@@ -54,9 +54,9 @@ function AuthPage() {
     try {
       const response = await axios.post("http://localhost:3001/login", { email, senha });
       const { token } = response.data;
-
+    
       await login(token);
-      
+      console.log("Login bem-sucedido:", response.data);
       navigate("/home");
     } catch (error) {
       alert(error.response ? error.response.data : "Erro ao conectar ao servidor.");

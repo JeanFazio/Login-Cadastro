@@ -5,8 +5,9 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [usuario, setUsuario] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  useEffect(() => { 
+  useEffect(() => {
     const token = localStorage.getItem("token");
 
     if (token) {
@@ -20,7 +21,10 @@ export const AuthProvider = ({ children }) => {
           console.error("Erro ao validar token:", err);
           localStorage.removeItem("token");
           setUsuario(null);
-        });
+        })
+        .finally(() => setLoading(false));
+    } else {
+      setLoading(false);
     }
   }, []);
 
