@@ -52,7 +52,7 @@ function Home() {
                     </div>
 
                     <div className="produto-item">
-                        <img src="/images/escape.jpg" alt="Escape Esportivo Inox" />
+                        <img src="/images/barenwald_berlin.jpg" alt="Escape Esportivo Inox" />
                         <div>
                             <h3>Escape Esportivo Inox</h3>
                             <p>Potência e som que impressionam. Qualidade top de linha.</p>
