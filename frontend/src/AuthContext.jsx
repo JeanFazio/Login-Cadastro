@@ -1,3 +1,4 @@
+// src/AuthContext.jsx
 import { createContext, useState, useEffect } from "react";
 import axios from "axios";
 
@@ -47,7 +48,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ usuario, login, logout, setUsuario }}>
+    <AuthContext.Provider value={{ usuario, login, logout, setUsuario, loading }}>
       {children}
     </AuthContext.Provider>
   );
