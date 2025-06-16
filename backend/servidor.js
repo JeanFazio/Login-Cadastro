@@ -30,7 +30,7 @@ app.get("/perfil", autenticarToken, (req, res) => {
 
 app.post("/login", async (req, res) => {
   const { email, senha } = req.body;
-  
+
   try {
     const result = await db.query("SELECT * FROM usuarios WHERE email = $1 AND senha = $2", [email, senha]);
 
@@ -54,9 +54,23 @@ app.post("/login", async (req, res) => {
 });
 
 app.post("/cadastro", async (req, res) => {
-  const { nome, email, senha } = req.body;
+  const { nome, email, senha, confirmarSenha } = req.body;
 
-  console.log("Tentativa de cadastro com:", { nome, email, senha });
+  if (!senha || senha.length < 6) {
+    return res.status(400).json({
+      errors: {
+        senha: "Senha deve ter pelo menos 6 caracteres."
+      }
+    });
+  }
+
+  if (senha !== confirmarSenha) {
+    return res.status(400).json({
+      errors: {
+        confirmarSenha: "Senhas não coincidem."
+      }
+    });
+  }
 
   try {
     const result = await db.query(
@@ -96,5 +110,5 @@ app.get("/verificar-email", async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Servidor rodando em http://localhost:${port}`);
+  console.log(`Servidor rodando`);
 });

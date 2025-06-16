@@ -33,6 +33,7 @@ function AuthPage() {
 
     // Verifica formato antes de consultar o backend
     if (!emailRegex.test(email)) {
+      setSuccess((prev) => ({ ...prev, email: "" }));
       setErrors((prev) => ({
         ...prev,
         email: "Insira um e-mail válido (ex: exemplo@email.com)",
@@ -40,7 +41,6 @@ function AuthPage() {
       setSuccess((prev) => ({ ...prev, email: "" }));
       return;
     }
-
     try {
       const { data } = await axios.get(
         "http://localhost:3001/verificar-email",
@@ -82,44 +82,39 @@ function AuthPage() {
   };
 
   const handleCadastro = async () => {
-    const novosErros = {
+    setErrors({
       username: "",
       email: "",
       senha: "",
       confirmarSenha: "",
-    };
-
-    // Validação de e-mail
-
-    // Validação de senha
-    if (senha.length < 6) {
-      novosErros.senha = "A senha deve ter pelo menos 6 caracteres.";
-    }
-
-    // Confirmação de senha
-    if (senha !== confirmarSenha) {
-      novosErros.confirmarSenha = "As senhas não coincidem";
-    }
-
-    // Se houver erros, exibe e interrompe
-    const temErros = Object.values(novosErros).some((erro) => erro !== "");
-    if (temErros) {
-      setErrors(novosErros);
-      return;
-    }
+    });
+    setSuccess({
+      email: "",
+    });
 
     try {
       await axios.post("http://localhost:3001/cadastro", {
         nome,
         email,
         senha,
+        confirmarSenha
       });
 
       alert("Cadastro realizado com sucesso!");
       setErrors({});
       limparCampos();
     } catch (error) {
-      setErrors({ email: error.response?.data || "Erro ao cadastrar." });
+      const backendErrors = error.response?.data?.errors || "Erro ao Cadastrar";
+
+      if (backendErrors) {
+        setSuccess
+        setErrors((prev) => ({
+          ...prev,
+          ...backendErrors,
+        }));
+      } else {
+        alert("Erro desconhecido ao cadastrar.");
+      }
     }
   };
 
@@ -184,9 +179,6 @@ function AuthPage() {
                     value={nome}
                     onChange={(e) => setNome(e.target.value)}
                   />
-                  {errors.username && (
-                    <span className="error">{errors.username}</span>
-                  )}
                 </>
               )}
             </div>
