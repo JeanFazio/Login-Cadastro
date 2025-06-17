@@ -140,7 +140,7 @@ function AuthPage() {
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
             aliquip ex ea commodo consequat.
           </p>
-          <button class="cssbuttons-io">
+          <button className="cssbuttons-io">
             <span>
               Saiba Mais
             </span>
