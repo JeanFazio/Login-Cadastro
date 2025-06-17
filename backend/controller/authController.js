@@ -40,7 +40,7 @@ exports.cadastro = async (req, res) => {
     });
   }
   try {
-    const result = await UsuarioModel.criar(email);
+    const result = await UsuarioModel.criar(nome, email, senha);
 
     console.log("Usuário cadastrado com sucesso:", result);
     res.status(201).send("Usuário cadastrado com sucesso");

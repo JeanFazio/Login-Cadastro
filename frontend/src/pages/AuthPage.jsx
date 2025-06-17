@@ -5,6 +5,7 @@ import "../SASS/AuthPage.scss";
 import { AuthContext } from "../AuthContext";
 import { useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useRef } from "react";
 
 function AuthPage() {
   const [tab, setTab] = useState("login");
@@ -14,6 +15,11 @@ function AuthPage() {
   const [confirmarSenha, setConfirmarSenha] = useState("");
   const [mostrarSenha, setMostrarSenha] = useState(false);
   const [mostrarConfirmarSenha, setMostrarConfirmarSenha] = useState(false);
+  const nomeRef = useRef(null);
+  const emailRef = useRef(null);
+  const senhaRef = useRef(null);
+  const confirmarSenhaRef = useRef(null);
+  const botaoPrincipalRef = useRef(null);
 
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -28,10 +34,18 @@ function AuthPage() {
     email: "",
   });
 
+  const handleKeyDown = (e, nextRef) => {
+    if (e.key === "Enter") {
+      e.preventDefault(); // Evita que o formulário dê submit antes da hora
+      if (nextRef && nextRef.current) {
+        nextRef.current.focus();
+      }
+    }
+  };
+
   const verificarEmail = async (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    // Verifica formato antes de consultar o backend
     if (!emailRegex.test(email)) {
       setSuccess((prev) => ({ ...prev, email: "" }));
       setErrors((prev) => ({
@@ -178,6 +192,8 @@ function AuthPage() {
                     type="text"
                     value={nome}
                     onChange={(e) => setNome(e.target.value)}
+                    onKeyDown={(e) => handleKeyDown(e, emailRef)}
+                    ref={nomeRef}
                   />
                 </>
               )}
@@ -195,6 +211,8 @@ function AuthPage() {
                     verificarEmail(novoEmail);
                   }
                 }}
+                onKeyDown={(e) => handleKeyDown(e, senhaRef)}
+                ref={emailRef}
               />
               {errors.email && <span className="error">{errors.email}</span>}
               {success.email && (
@@ -209,6 +227,14 @@ function AuthPage() {
                   type={mostrarSenha ? "text" : "password"}
                   value={senha}
                   onChange={(e) => setSenha(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (tab === "cadastro") {
+                      handleKeyDown(e, confirmarSenhaRef);
+                    } else {
+                      handleKeyDown(e, botaoPrincipalRef);
+                    }
+                  }}
+                  ref={senhaRef}
                 />
                 <span
                   className="toggle-password"
@@ -230,6 +256,8 @@ function AuthPage() {
                       type={mostrarConfirmarSenha ? "text" : "password"}
                       value={confirmarSenha}
                       onChange={(e) => setConfirmarSenha(e.target.value)}
+                      onKeyDown={(e) => handleKeyDown(e, botaoPrincipalRef)}
+                      ref={confirmarSenhaRef}
                     />
                     <span
                       className="toggle-password"
@@ -247,7 +275,7 @@ function AuthPage() {
               )}
             </div>
 
-            <button onClick={tab === "login" ? handleLogin : handleCadastro}>
+            <button onClick={tab === "login" ? handleLogin : handleCadastro} ref={botaoPrincipalRef}>
               {tab === "login" ? "Entrar" : "Cadastrar"}
             </button>
           </div>
