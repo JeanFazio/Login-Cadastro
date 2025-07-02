@@ -1,43 +1,46 @@
-.produto-card {
-    background: white;
-    border-radius: 10px;
-    padding: 1rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    text-align: center;
-    transition: transform 0.3s;
+    .sessao-produtos {
+      padding: 2rem 3rem;
   
-    &:hover {
-      transform: translateY(-5px);
-    }
+      h2 {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+      }
   
-    img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-    }
+      .produto-linha {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
   
-    h3 {
-      font-size: 1.1rem;
-      margin: 1rem 0 0.5rem;
-    }
+        .produto-item {
+          display: flex;
+          background: white;
+          padding: 1.5rem;
+          border-radius: 10px;
+          box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+          align-items: center;
+          gap: 2rem;
   
-    span {
-      font-weight: bold;
-      color: #E53935;
-    }
+          img {
+            width: 200px;
+            border-radius: 10px;
+          }
   
-    button {
-      margin-top: 1rem;
-      background-color: #E53935;
-      color: white;
-      border: none;
-      padding: 0.6rem 1.2rem;
-      border-radius: 5px;
-      cursor: pointer;
+          div {
+            h3 {
+              font-size: 1.3rem;
+              margin-bottom: 0.5rem;
+            }
   
-      &:hover {
-        background-color: #d32f2f;
+            p {
+              margin-bottom: 0.5rem;
+            }
+  
+            span {
+              font-weight: bold;
+              font-size: 1.2rem;
+              color: #4f46e5;
+            }
+          }
+        }
       }
     }
-  }
-  

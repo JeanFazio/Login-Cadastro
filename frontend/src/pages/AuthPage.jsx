@@ -36,7 +36,7 @@ function AuthPage() {
 
   const handleKeyDown = (e, nextRef) => {
     if (e.key === "Enter") {
-      e.preventDefault(); // Evita que o formulário dê submit antes da hora
+      e.preventDefault();
       if (nextRef && nextRef.current) {
         nextRef.current.focus();
       }

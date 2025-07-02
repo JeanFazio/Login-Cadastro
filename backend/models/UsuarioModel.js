@@ -16,7 +16,14 @@ const UsuarioModel = {
       "INSERT INTO usuarios (nome, email, senha) VALUES ($1, $2, $3)",
       [nome, email, senha]
     );
-  }
+  },
+
+  async atualizarPerfil(id, nome, email) {
+    return db.query(
+      "UPDATE usuarios SET nome = $1, email = $2 WHERE id = $3",
+      [nome, email, id]
+    );
+  },
 };
 
 module.exports = UsuarioModel;
