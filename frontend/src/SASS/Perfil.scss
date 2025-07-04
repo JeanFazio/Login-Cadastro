@@ -6,9 +6,9 @@ body {
 }
 
 .perfil-web {
-  background: #f43838 !important;
+  background-color: #a0a0a0;
   min-height: 100vh;
-  height: auto; 
+  height: auto;
   width: 100%;
   margin: 0;
 
@@ -96,8 +96,80 @@ body {
     }
   }
 
-  .perfil-bottom-container{
-    margin: 0px;
-  ;
+  .perfil-tabs-container {
+    margin: 0;
+    padding-left: 30px;
+    border-top: #333 5px solid;
+  }
+
+  .perfil-tabs {
+    padding-top: 1rem;
+    display: flex;
+    justify-content: start;
+    margin-bottom: 2rem;
+    gap: 20px;
+
+    button {
+      background: none;
+      border: none;
+      font-size: 16px;
+      padding: 6px 10px;
+      cursor: pointer;
+      color: #333;
+      border-bottom: 2px solid transparent;
+      border-radius: 8px;
+      transition: all 0.6s ease;
+
+      &.active {
+        border-bottom: 2px solid #2378ff;
+        border-radius: 8px;
+        font-weight: bold;
+      }
+
+      &:hover {
+        color: #2378ff;
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .perfil-web {
+    .perfil-layout {
+      flex-direction: column;
+    }
+
+    .perfil-sidebar {
+      width: 100%;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .perfil-conteudo {
+      width: 100%;
+      padding: 2rem;
+    }
+
+    .perfil-tabs-container {
+      padding-left: 0;
+      padding: 1rem;
+    }
+
+    .perfil-tabs {
+      flex-wrap: wrap;
+      gap: 10px;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    .avatar-web {
+      width: 120px;
+      height: 120px;
+    }
+
   }
 }

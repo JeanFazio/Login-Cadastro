@@ -79,7 +79,7 @@ function Perfil() {
         )}
 
         <div className="perfil-tabs-container">
-          <div className="Perfiltabs">
+          <div className="perfil-tabs">
             <button className={tab === "meusPedidos" ? "active" : ""} onClick={() => setTab("meusPedidos")}>
               Meus Pedidos
             </button>
@@ -88,7 +88,7 @@ function Perfil() {
             </button>
           </div>
           
-          <div className="perfil-content">
+          <div className="tabs-content">
             {tab === "meusPedidos" && (
               <div className="perfil-meus-pedidos">
                 <h2>Meus Pedidos</h2>
